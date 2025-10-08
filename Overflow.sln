@@ -1,10 +1,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36429.23 d17.14
+VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overflow.AppHost", "Overflow.AppHost\Overflow.AppHost.csproj", "{BFA0F693-8F17-475A-B629-3A25611F3E82}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overflow.ServiceDefaults", "Overflow.ServiceDefaults\Overflow.ServiceDefaults.csproj", "{9FFD5E45-942B-0C74-AB32-283D13458368}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionService", "QuestionService\QuestionService.csproj", "{0BFF257F-DD6F-48DF-A47B-F1EFAFE8583A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +24,16 @@ Global
 		{9FFD5E45-942B-0C74-AB32-283D13458368}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FFD5E45-942B-0C74-AB32-283D13458368}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FFD5E45-942B-0C74-AB32-283D13458368}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BFF257F-DD6F-48DF-A47B-F1EFAFE8583A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BFF257F-DD6F-48DF-A47B-F1EFAFE8583A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BFF257F-DD6F-48DF-A47B-F1EFAFE8583A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BFF257F-DD6F-48DF-A47B-F1EFAFE8583A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0BFF257F-DD6F-48DF-A47B-F1EFAFE8583A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {622361BF-F666-477D-8DF7-2E8DB3CFFB18}
