@@ -1,9 +1,9 @@
+using System.Text.RegularExpressions;
 using Common;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using SearchService.Data;
 using SearchService.Models;
-using System.Text.RegularExpressions;
 using Typesense;
 using Typesense.Setup;
 using Wolverine;

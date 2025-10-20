@@ -50,7 +50,6 @@ var rabbitmq = builder.AddRabbitMQ("messaging")
     .WithDataVolume("rabbitmq-data")
     .WithManagementPlugin(port: 15672);
 
-
 var questionService = builder.AddProject<Projects.QuestionService>("question-svc")
     .WithReference(keycloak)
     .WithReference(questionDb)
@@ -58,6 +57,7 @@ var questionService = builder.AddProject<Projects.QuestionService>("question-svc
     .WaitFor(keycloak)
     .WaitFor(questionDb)
     .WaitFor(rabbitmq);
+
 
 var searchService = builder.AddProject<Projects.SearchService>("search-svc")
     .WithEnvironment("typesense-api-key", typesenseApiKey)
@@ -78,13 +78,21 @@ var yarp = builder.AddYarp("gateway")
     .WithEnvironment("VIRTUAL_HOST", "api.overflow.local")
     .WithEnvironment("VIRTUAL_PORT", "8001");
 
+var webapp = builder.AddNpmApp("webapp", "../webapp", "dev")
+    .WithReference(keycloak)
+    .WithHttpEndpoint(env: "PORT", port: 3000);
+    //.WithHttpEndpoint(env: "PORT", port: 3000, targetPort: 4000)
+    //.WithEnvironment("VIRTUAL_HOST", "overflow.trycatchlearn.com")
+    //.WithEnvironment("VIRTUAL_PORT", "4000")
+    //.WithEnvironment("LETSENCRYPT_HOST", "overflow.trycatchlearn.com")
+    //.WithEnvironment("LETSENCRYPT_EMAIL", "trycatchlearn@outlook.com")
+    //.PublishAsDockerFile();
+
 if (!builder.Environment.IsDevelopment())
 {
     builder.AddContainer("nginx-proxy", "nginxproxy/nginx-proxy", "1.8")
         .WithEndpoint(80, 80, "nginx", isExternal: true)
         .WithBindMount("/var/run/docker.sock", "/tmp/docker.sock", true);
-    
 }
-
 
 builder.Build().Run();

@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using System.Security.Claims;
+using Contracts;
 using FastExpressionCompiler;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,6 @@ using QuestionService.Data;
 using QuestionService.DTOs;
 using QuestionService.Models;
 using QuestionService.Services;
-using System.Security.Claims;
 using Wolverine;
 
 namespace QuestionService.Controllers

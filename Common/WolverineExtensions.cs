@@ -17,7 +17,6 @@ public static class WolverineExtensions
     public static async Task UseWolverineWithRabbitMqAsync(
         this IHostApplicationBuilder builder, Action<WolverineOptions> configureMessaging)
     {
-        
         var retryPolicy = Policy
             .Handle<BrokerUnreachableException>()
             .Or<SocketException>()
@@ -27,13 +26,13 @@ public static class WolverineExtensions
                 (exception, timeSpan, retryCount) =>
                 {
                     Console.WriteLine($"Retry attempt {retryCount} failed.  Retrying in " +
-                                        $"{timeSpan.Seconds} seconds...");
+                                      $"{timeSpan.Seconds} seconds...");
                 });
 
         await retryPolicy.ExecuteAsync(async () =>
         {
             var endpoint = builder.Configuration.GetConnectionString("messaging")
-                            ?? throw new InvalidOperationException("messaging connection string not found");
+                           ?? throw new InvalidOperationException("messaging connection string not found");
 
             var factory = new ConnectionFactory
             {
@@ -66,7 +65,7 @@ public static class WolverineExtensions
             opts.UseRabbitMqUsingNamedConnection("messaging")
                 .AutoProvision()
                 .DeclareExchange("questions");
-
+            
             configureMessaging(opts);
         });
     }
